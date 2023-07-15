@@ -7,6 +7,9 @@ Conda installation guide: [Installing on Linux](https://docs.conda.io/projects/c
 ## For v2.x
 
 For finding compatible CUDA and cuDNN versions for each Tensorflow [Build from source  |  TensorFlow](https://www.tensorflow.org/install/source#gpu). 
+
+Before installation, make sure that you have NVIDIA Windows Driver installed, preferably, use the latest version, or at least R495 or driver to have CUDA support.
+
 ### Install
 ```shell
 conda install -c conda-forge cudatoolkit=11.8.0
@@ -22,7 +25,7 @@ python3 -c "import tensorflow as tf; print(tf.config.list_physical_devices('GPU'
 ## For v1.x
 With the release of TF 2.0, Google announced that new major releases will not be provided on the TF 1.x branch after the release of TF 1.15 on October 14. And older version of Tensorflow will need different version of CUDA and cuDNN. And also even you are able to find the older version of CUDA and cuDNN version on NVIDIA archives. RTX 30xx cards requires CUDA 10 and above.
 
-So in order to install TF v1, you can use a modified version of tensorflow from NVIDIA from [HERE](https://github.com/NVIDIA/tensorflow) which makes it backward compatible for RTX 30xx cards and also for other GPU cards and this modified version of Tensorflow can also use the latest version of cuDNN.
+So in order to install TF v1, you can use a modified version of tensorflow from [NVIDIA](https://github.com/NVIDIA/tensorflow) which makes it backward compatible for RTX 30xx cards and also for other GPU cards and this modified version of Tensorflow can also use the latest version of cuDNN.
 
 ### Requirements
 - Ubuntu 20.04 or later (64-bit)
