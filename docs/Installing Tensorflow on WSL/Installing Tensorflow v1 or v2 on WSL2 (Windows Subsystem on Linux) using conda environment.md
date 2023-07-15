@@ -4,13 +4,6 @@ https://www.tensorflow.org/install/source_windows#gpu
 
 Conda installation guide: [Installing on Linux](https://docs.conda.io/projects/conda/en/latest/user-guide/install/linux.html), please run this command in WSL. (you can use curl or wget to grab the link to directly download to the current working directory)
 
-### Table of Contents
-- [[#For v2.x|For v2.x]]
-	- [[#For v2.x#Install|Install]]
-- [[#For v1.x|For v1.x]]
-	- [[#For v1.x#Requirements|Requirements]]
-	- [[#For v1.x#Install|Install]]
-
 ## For v2.x
 
 For finding compatible CUDA and cuDNN versions for each Tensorflow [Build from source  |  TensorFlow](https://www.tensorflow.org/install/source#gpu). 
