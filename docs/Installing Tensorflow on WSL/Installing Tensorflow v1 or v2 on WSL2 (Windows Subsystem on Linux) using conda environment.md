@@ -2,12 +2,29 @@
 GPU support on native-Windows is only available for 2.10 or earlier versions, starting in TF 2.11, CUDA build is not supported for Windows. For using TensorFlow GPU on Windows, you will need to build/install TensorFlow in WSL2 
 https://www.tensorflow.org/install/source_windows#gpu
 
-Conda installation guide: [Installing on Linux](https://docs.conda.io/projects/conda/en/latest/user-guide/install/linux.html), please run this command in WSL.
+Conda installation guide: [Installing on Linux](https://docs.conda.io/projects/conda/en/latest/user-guide/install/linux.html), please run this command in WSL. (you can use curl or wget to grab the link to directly download to the current working directory)
+
+### Table of Contents
+- [[#For v2.x|For v2.x]]
+	- [[#For v2.x#Install|Install]]
+- [[#For v1.x|For v1.x]]
+	- [[#For v1.x#Requirements|Requirements]]
+	- [[#For v1.x#Install|Install]]
 
 ## For v2.x
 
-For finding compatible CUDA and cuDNN versions for each Tensorflow [Build from source  |  TensorFlow](https://www.tensorflow.org/install/source)
-___BUILD IN PROGRESS___
+For finding compatible CUDA and cuDNN versions for each Tensorflow [Build from source  |  TensorFlow](https://www.tensorflow.org/install/source#gpu). 
+### Install
+```shell
+conda install -c conda-forge cudatoolkit=11.8.0
+python3 -m pip install nvidia-cudnn-cu11==8.6.0.163 tensorflow==2.12.*
+mkdir -p $CONDA_PREFIX/etc/conda/activate.d
+echo 'CUDNN_PATH=$(dirname $(python -c "import nvidia.cudnn;print(nvidia.cudnn.__file__)"))' >> $CONDA_PREFIX/etc/conda/activate.d/env_vars.sh
+echo 'export LD_LIBRARY_PATH=$CONDA_PREFIX/lib/:$CUDNN_PATH/lib:$LD_LIBRARY_PATH' >> $CONDA_PREFIX/etc/conda/activate.d/env_vars.sh
+source $CONDA_PREFIX/etc/conda/activate.d/env_vars.sh
+# Verify install:
+python3 -c "import tensorflow as tf; print(tf.config.list_physical_devices('GPU'))"
+```
 
 ## For v1.x
 With the release of TF 2.0, Google announced that new major releases will not be provided on the TF 1.x branch after the release of TF 1.15 on October 14. And older version of Tensorflow will need different version of CUDA and cuDNN. And also even you are able to find the older version of CUDA and cuDNN version on NVIDIA archives. RTX 30xx cards requires CUDA 10 and above.
@@ -24,7 +41,7 @@ __For wheel installation__:
 
 ### Install
 
-````
+````shell
 $ pip install --user nvidia-pyindex
 $ pip install --user nvidia-tensorflow[horovod]
 ````
